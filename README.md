@@ -35,12 +35,10 @@ cd diabetes-prediction-ml
 Make sure you have Python 3 and Anaconda installed.
 
 From an Anaconda Prompt:
-```bash ... ```
 `pip install -r REQUIREMENTS.txt`
 
 3- Run the web application
 Go into the WEBSITE folder and launch the app:
-```bash ... ```
 `cd WEBSITE
 python website.py`
 
