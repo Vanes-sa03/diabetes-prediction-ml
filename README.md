@@ -25,6 +25,7 @@ The web application allows:
 ---
 
 ##Installation & Execution
+
 1- Clone the repository
 
 git clone https://github.com/Vanes-sa03/diabetes-prediction-ml.git
