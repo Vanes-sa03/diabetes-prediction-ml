@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes prediction</title>
+    {{ dropzone.load_css() }}
+    {{ dropzone.style('border: 2px dashed #000000; border: 10px, width: 200px; heigth: 250px;') }}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .bandeau {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            font-size: 1.5em;
+            position: relative;
+            height: 100px; /* Fixe la hauteur du bandeau à 45px */
+            overflow: hidden; /* Assure que l'image ne dépasse pas */
+        }
+        .bandeau img {
+            width: 100%;
+            height: 100%; /* Adapte l'image à la hauteur du bandeau */
+            object-fit: cover; /* Recadre l'image pour qu'elle remplisse le bandeau */
+            display: block;
+        }
+        .bandeau .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-size: 1em; /* Ajusté pour correspondre à la hauteur réduite */
+            font-weight: bold;
+        }
+        .fullscreen-image {
+            position: absolute; /* Permet à l'image de se positionner librement */
+            top: 0; /* Aligne l'image avec le haut du body */
+            left: 0; /* Aligne l'image avec le côté gauche du body */
+            width: 100%; /* Prend toute la largeur de la fenêtre */
+            height: 100%; /* Prend toute la hauteur de la fenêtre */
+            filter: saturate(100%);
+            opacity: 0.5; /* 50% transparency */
+            object-fit: cover; /* Assure que l'image remplit l'espace sans se déformer */
+            z-index: -1; /* Place l'image derrière tout le contenu */
+        }
+        .form-container {
+            margin: 20px auto;
+            max-width: 500px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #4a5fa3;
+        }
+        .form-container2 {
+            margin: 20px auto;
+            max-width: 500px;
+            max-height: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #4a5fa3;
+        }
+        .form-container3 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Deux colonnes de taille égale */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 50%; /* Réduction de la largeur des champs de saisie à 50% */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            background-color: #799ec7;
+            color: rgb(37, 31, 31);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #166ccf;
+        }
+        .form-wrapper {
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            gap: 10px; /* Espace entre les deux formulaires */
+            padding: 20px;
+        }
+        .position-bas-droite {
+            position: fixed; /* Place le div par rapport à la fenêtre (viewport) */
+            bottom: 10px; /* Distance par rapport au bas de la fenêtre */
+            right: 10px; /* Distance par rapport au bord droit de la fenêtre */
+            background-color: #007BFF; /* Exemple de couleur de fond */
+            color: black; /* Exemple de couleur de texte */
+            font-weight: bold;
+            padding: 10px; /* Exemple de marges internes */
+            border-radius: 5px; /* Coins arrondis pour un style esthétique */
+        }
+        </style>
+</head>
+<body style="background-color: rgb(166, 193, 216);">
+
+    <div class="bandeau">
+        <img src="https://img.freepik.com/photos-gratuite/docteur-fonctionnement-ordinateur-portable-hopital-medical-stethoscope-medecine-presse-papiers-bureau_229060-113.jpg" alt="Image du bandeau"> <!-- L'image reste sur tout le bandeau -->
+    </div>
+    <img src="https://wallpapercave.com/wp/HLJMaFT.jpg" alt="Image du bandeau" class="fullscreen-image">
+    <div class="text" style="text-align: center;"><h1>DSTI ML Project - Predicting diabetes outcome for women</h1></div>
+    <div class="form-wrapper">
+        <div class="form-container">
+            <form action="{{ url_for('result') }}" method="POST">
+                <p><b>Manual unitarian prediction :</b></p>
+                <hr style="border:2px solid black;"></hr>
+                <p>&nbsp;</p>
+                    <div class="form-container3">
+                        <div class="form-group">
+                            <label for="pregnancies">Pregnancies :</label>
+                            <input type="text" id="pregnancies" name="pregnancies" value=6 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="plasmaglucose">Plasma Glucose :</label>
+                            <input type="text" id="plasmaglucose" name="plasmaglucose" value=130 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="diastolicbloodpressure">Diastolic Pressure :</label>
+                            <input type="text" id="diastolicbloodpressure" name="diastolicbloodpressure" value=43 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tricepsthickness">Triceps Thickness :</label>
+                            <input type="text" id="tricepsthickness" name="tricepsthickness" value=12 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seruminsulin">Serum Insulin :</label>
+                            <input type="text" id="seruminsulin" name="seruminsulin" value=186 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="BMI">BMI :</label>
+                            <input type="text" id="BMI" name="BMI" value=34.6826 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="diabetespedigree">Diabetes Pedigree :</label>
+                            <input type="text" id="diabetespedigree" name="diabetespedigree"  value=0.10417 required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age :</label>
+                            <input type="text" id="age" name="age" value=22 required>
+                        </div>
+                    </div>
+                <p>&nbsp;</p>
+                    <div class="form-group">
+                        <button type="submit">Predict</button>
+                    </div>
+                <div class="position-bas-droite">
+                    <p>GROUP 11 :</p>
+                    <hr></hr>
+                    <p>Ronald</p>
+                    <p>Vanessa</p>
+                    <p>Almendra</p>
+                    <p>Niki (Shanchun)</p>
+                    <p>Sujeendra</p>
+                </div>
+            </form>
+        </div>
+        <div class="form-container2">
+                <p><b>Batch prediction :</b></p>
+                <hr style="border:2px solid black;"></hr>
+                <p>&nbsp;</p>
+                    <div class="file-upload-container">
+                        {{ dropzone.create(action='input') }}
+                        {{ dropzone.load_js() }}
+                        {{ dropzone.config() }}
+                        {# You can get the success response from server like this: #}
+                        {#{ dropzone.config(custom_options="success: function(file, response){console.log(response);}") }#}
+                    </div>
+                    <p>&nbsp;</p>
+                    <form action="{{ url_for('batchresult') }}" method="POST">
+                        <div class="form-group">
+                            <button type="submit">Predict</button>
+                        </div>
+                    </form>
+        </div>
+    </div> 
+</body>
+</html>
