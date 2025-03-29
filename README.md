@@ -13,7 +13,7 @@ The web application allows:
 - `Diabetes_Notebook_EDA_and_ML.ipynb` → Data exploration and model building (Jupyter notebook).
 - `TAIPEI_diabetes.csv` → Dataset used for training and testing.
 - `WEBSITE/` → All web application files, including the trained model and web interface code.
-- `REQUIREMENTS.txt` → Python libraries needed to run the app.
+- `Project Requirements for GitHub.txt` → Python libraries needed to run the app.
 - `README.md` → This documentation.
 
 ---
