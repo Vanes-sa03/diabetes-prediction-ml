@@ -10,11 +10,13 @@ The web application allows:
 ---
 
 ##Project Structure
-- `Diabetes_Notebook_EDA_and_ML.ipynb` → Data exploration and model building (Jupyter notebook).
-- `TAIPEI_diabetes.csv` → Dataset used for training and testing.
-- `WEBSITE/` → All web application files, including the trained model and web interface code.
-- `Project Requirements for GitHub.txt` → Python libraries needed to run the app.
+- `WEBSITE/` → All web application files, including the trained model and web interface code.de
+- `Diabetes_Notebook_EDA_and_ML - WITH AUC -ROC.ipynb` → Data exploration and model building (Jupyter notebook).
+- `Project - Predicting diabetes outcome for women.pdf`→ The project group report.
 - `README.md` → This documentation.
+- `REQUIREMENTS.txt` → Python libraries needed to run the app.
+- `TAIPEI_diabetes.csv` → Dataset used for training and testing.
+
 
 ---
 
