@@ -38,7 +38,7 @@ From an Anaconda Prompt:
 `pip install -r REQUIREMENTS.txt`
 
 3- Run the web application
-Go into the WEBSITE folder and launch the app:
+Go into the WEBSITE folder and launch the app: (you will find a README and REQUIREMENTS for the website)
 `cd WEBSITE
 python website.py`
 
